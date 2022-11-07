@@ -1,6 +1,6 @@
 class Nameable
   def correct_name
-    raise NotImplementedError,
+    raise NotImplementedError
   end
 end
 
@@ -26,7 +26,7 @@ class TrimmerDecorator < Decorator
     if @name.correct_name.length <= 10
       @name.correct_name
     else
-      @name.correct_name[0..9]    
+      @name.correct_name[0..9]
     end
   end
 end

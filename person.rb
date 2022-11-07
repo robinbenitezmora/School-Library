@@ -3,6 +3,7 @@ class Person < Nameable
   attr_reader :id
 
   def initialize(age, name = 'Unknown', parent_permission: true)
+    super()
     @id = Random.rand(1..1000)
     @age = age
     @name = name
@@ -26,10 +27,10 @@ end
 
 # Try the following code:
 person = Person.new(22, 'maximilianus')
- person.correct_name
+puts person.correct_name
 
- capitalizedPerson = CapitalizeDecorator.new(person)
- capitalizedPerson.correct_name
- 
- capitalizedTrimmerPerson = TrimmerDecorator.new(capitalizedPerson)
- capitalizedTrimmerPerson.correct_name
+capitalized_person = CapitalizeDecorator.new(person)
+puts capitalized_person.correct_name
+
+capitalized_trimmer_person = TrimmerDecorator.new(capitalized_person)
+puts capitalized_trimmer_person.correct_name
