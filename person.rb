@@ -23,3 +23,13 @@ class Person < Nameable
 
   private :of_age?
 end
+
+# Try the following code:
+person = Person.new(22, 'maximilianus')
+ person.correct_name
+
+ capitalizedPerson = CapitalizeDecorator.new(person)
+ capitalizedPerson.correct_name
+ 
+ capitalizedTrimmerPerson = TrimmerDecorator.new(capitalizedPerson)
+ capitalizedTrimmerPerson.correct_name
