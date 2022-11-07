@@ -1,13 +1,13 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# My Enumerable Methods
+# OOP School Library
 
-> In this project, We have created our own version of Ruby’s enumerable methods.
+> In this project, we are going to build a school library app. We will be creating classes for students and teachers. Also, we will be creating a class for a book and a class for rentals. We will be creating a relationship between all the classes.
 
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
-git clone https://github.com/robinbenitezmora/My-Enumerable in your terminal
+git clone https://github.com/robinbenitezmora/School-Library in your terminal
 
 ### Prerequisites
 - Ruby
@@ -26,17 +26,6 @@ git clone https://github.com/robinbenitezmora/My-Enumerable in your terminal
 - GitHub: [@robinbenitezmora](https://github.com/robinbenitezmora)
 - Twitter: [@Mecanico_Robin](https://twitter.com/mecanico_robin)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/robin-benitez-mora/)
-
-👤 **Lucas Mullen**
-
-- GitHub: [@mullenlucas](https://github.com/mullenlucas/)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/mullenlucas/)
-
-👤 **Abdullateef Bello**
-
-- GitHub: [@Ibnballo1](https://github.com/Ibnballo1)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/abdullateef-bello/)
-
 
 ## Contributing
 Contributions, issues, and feature requests are welcome!
