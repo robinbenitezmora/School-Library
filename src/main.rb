@@ -1,10 +1,11 @@
 require_relative './app'
 
-data = { books: [], people: [], rentals: [] }
+db = { books: [], people: [] }
 
-puts 'Welcome to School Library your App!'
+puts 'Welcome to School Library App!'
 
-def menu
+def display_menu
+  puts
   puts 'Please choose an option by entering a number:'
   puts '1 - List all books'
   puts '2 - List all people'
@@ -16,9 +17,9 @@ def menu
   gets.chomp
 end
 
-def main_menu(db_data) # rubocop:todo Metrics/CyclomaticComplexity
+def main(db_data)
   app = App.new
-  case menu
+  case display_menu
   when '1'
     app.list_all_books(db_data[:books])
   when '2'
@@ -28,15 +29,16 @@ def main_menu(db_data) # rubocop:todo Metrics/CyclomaticComplexity
   when '4'
     app.create_book(db_data[:books])
   when '5'
-    app.create_rental(db_data[:rentals], db_data[:books], db_data[:people])
+    app.create_rental(db_data)
   when '6'
-    app.list_rentals_by_person_id(db_data[:rentals], db_data[:books], db_data[:people])
+    app.list_rentals(db_data[:people])
   when '7'
     puts 'Thank you for using this app!'
-    break
+    return
   else
     puts 'That is not a valid option'
   end
+  main(db_data)
 end
 
-main_menu(data)
+main(db)
