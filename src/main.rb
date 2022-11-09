@@ -16,28 +16,26 @@ def menu
   gets.chomp
 end
 
-def main_menu(db_data)
+def main_menu(db_data) # rubocop:todo Metrics/CyclomaticComplexity
   app = App.new
-  loop do
-    case menu
-    when '1'
-      app.list_all_books(db_data[:books])
-    when '2'
-      app.list_all_people(db_data[:people])
-    when '3'
-      app.create_person(db_data[:people])
-    when '4'
-      app.create_book(db_data[:books])
-    when '5'
-      app.create_rental(db_data[:rentals], db_data[:books], db_data[:people])
-    when '6'
-      app.list_rentals_by_person_id(db_data[:rentals], db_data[:books], db_data[:people])
-    when '7'
-      puts 'Thank you for using this app!'
-      break
-    else
-      puts 'That is not a valid option'
-    end
+  case menu
+  when '1'
+    app.list_all_books(db_data[:books])
+  when '2'
+    app.list_all_people(db_data[:people])
+  when '3'
+    app.create_person(db_data[:people])
+  when '4'
+    app.create_book(db_data[:books])
+  when '5'
+    app.create_rental(db_data[:rentals], db_data[:books], db_data[:people])
+  when '6'
+    app.list_rentals_by_person_id(db_data[:rentals], db_data[:books], db_data[:people])
+  when '7'
+    puts 'Thank you for using this app!'
+    break
+  else
+    puts 'That is not a valid option'
   end
 end
 
