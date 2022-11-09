@@ -17,7 +17,8 @@ def display_menu
   gets.chomp
 end
 
-def main(db_data)
+# rubocop:todo Metrics/MethodLength
+def main(db_data) # rubocop:todo Metrics/CyclomaticComplexity, Metrics/MethodLength
   app = App.new
   case display_menu
   when '1'
@@ -40,5 +41,6 @@ def main(db_data)
   end
   main(db_data)
 end
+# rubocop:enable Metrics/MethodLength
 
 main(db)

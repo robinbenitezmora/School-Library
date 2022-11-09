@@ -68,7 +68,7 @@ class App
     puts 'Teacher created successfully'
   end
 
-  def create_rental(db_data)
+  def create_rental(db_data) # rubocop:todo Metrics/MethodLength
     if db_data[:books].empty?
       puts 'There are no books to rent'
       return
@@ -85,7 +85,9 @@ class App
     book_chosen = db_data[:books][book_index]
 
     puts 'Select a person from the following list by number'
-    db_data[:people].each_with_index { |person, index| puts "#{index} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+    db_data[:people].each_with_index do |person, index|
+      puts "#{index} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+    end
 
     person_index = gets.chomp.to_i
     person_chosen = db_data[:people][person_index]
@@ -106,10 +108,10 @@ class App
     puts 'Please enter the ID of the person whose rentals you want to see'
     id = gets.chomp.to_i
 
-    person = db_people.find { |person| person.id == id }
+    user = db_people.find { |person| person.id == id }
     puts 'Rentals:'
-    person.rentals.each do |rental|
-      puts "\nDate: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
+    user.rentals.each do |rental|
+      puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
     end
   end
 end
