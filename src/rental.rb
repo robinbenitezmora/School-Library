@@ -3,10 +3,10 @@ class Rental
   attr_reader :book, :person
 
   def initialize(date, book, person)
-    @date = date
     @book = book
+    book.rentals.push(self)
     @person = person
-    book.rentals << self
-    person.rentals << self
+    person.rentals.push(self)
+    @date = date
   end
 end

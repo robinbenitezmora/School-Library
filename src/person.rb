@@ -28,7 +28,7 @@ class Person < Nameable
     of_age? || @parent_permission
   end
 
-  def add_rental(date, book)
+  def add_rental(book, date)
     Rental.new(date, book, self)
   end
 
@@ -36,11 +36,11 @@ class Person < Nameable
 end
 
 # Try the following code:
-person = Person.new(22, 'maximilianus')
-puts person.correct_name
+# person = Person.new(22, 'maximilianus')
+# puts person.correct_name
 
-capitalized_person = CapitalizeDecorator.new(person)
-puts capitalized_person.correct_name
+# capitalized_person = CapitalizeDecorator.new(person)
+# puts capitalized_person.correct_name
 
-capitalized_trimmer_person = TrimmerDecorator.new(capitalized_person)
-puts capitalized_trimmer_person.correct_name
+# capitalized_trimmer_person = TrimmerDecorator.new(capitalized_person)
+# puts capitalized_trimmer_person.correct_name
