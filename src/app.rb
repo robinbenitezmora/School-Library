@@ -12,12 +12,12 @@ class App
   end
 
   def create_book(db_books)
-    puts 'Please enter the title of the book:'
+    print 'Please enter the title of the book:'
     title = gets.chomp
-    puts 'Please enter the author of the book:'
+    print 'Please enter the author of the book:'
     author = gets.chomp
     db_books.push(Book.new(title, author))
-    puts 'Book created successfully'
+    print 'Book created successfully'
   end
 
   def list_all_people(db_people)
@@ -28,38 +28,44 @@ class App
   def create_person(db_people)
     puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]'
     option = gets.chomp
+    print 'Age: '
+    age = gets.chomp
+    print 'Name: '
+    name = gets.chomp
+
     case option
     when '1'
-      create_student(db_people)
+      create_student(db_people, name, age)
     when '2'
-      create_teacher(db_people)
+      create_teacher(db_people, name, age)
+    else
+      puts 'That is not a valid input'
+    end
+  end
+
+  def create_student(db_people, name, age)
+    puts 'Has parent permission? [Y/N]'
+    parent_permission = gets.chomp.downcase
+    student = ''
+    case parent_permission
+    when 'y'
+      student = Student.new(age, name, parent_permission: true)
+    when 'n'
+      student = Student.new(age, name, parent_permission: false)
     else
       puts 'That is not a valid input'
       return
     end
+    db_people.push(student)
+    puts 'Student created successfully'
   end
 
-  def create_student(db_people)
-    puts 'Age:'
-    age = gets.chomp
-    puts 'Name:'
-    name = gets.chomp
-    puts 'Has parent permission? [Y/N]'
-    parent_permission = gets.chomp
-    parent_permission = parent_permission.downcase == 'y'
-    db_people.push(Student.new(age, name, parent_permission))
-    puts 'Person created successfully'
-  end
-
-  def create_teacher(db_people)
-    puts 'Age:'
-    age = gets.chomp
-    puts 'Name:'
-    name = gets.chomp
-    puts 'Specialization:'
+  def create_teacher(db_people, name, age)
+    print 'Specialization: '
     specialization = gets.chomp
-    db_people.push(Teacher.new(age, specialization, name))
-    puts 'Person created successfully'
+    teacher = Teacher.new(specialization, age, name)
+    db_people.push(teacher)
+    puts 'Teacher created successfully'
   end
 
   def create_rental(db_data)
@@ -73,13 +79,13 @@ class App
     end
 
     puts 'Select a book from the following list by number'
-    db_data[:books].each_with_index { |book, index| puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}" }
+    db_data[:books].each_with_index { |book, index| puts "#{index} Title: \"#{book.title}\", Author: #{book.author}" }
 
     book_index = gets.chomp.to_i
     book_chosen = db_data[:books][book_index]
 
-    puts 'Select a person from the following list by number (not id)'
-    db_data[:people].each_with_index { |person, index| puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+    puts 'Select a person from the following list by number'
+    db_data[:people].each_with_index { |person, index| puts "#{index} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
 
     person_index = gets.chomp.to_i
     person_chosen = db_data[:people][person_index]
@@ -87,29 +93,23 @@ class App
     puts 'Date: yyyy-mm-dd'
     date = gets.chomp
 
-    person_chosen.add_rental(date, book_chosen)
-    puts 'Rental created successfully'
+    person_chosen.add_rental(book_chosen, date)
+    puts "Rental created successfully for #{person_chosen.name} with #{book_chosen.title}"
   end
 
   def list_rentals(db_people)
     if db_people.empty?
-      puts 'There are no people to list rentals for'
+      puts 'There are no people to list rentals'
       return
     end
 
-    puts 'ID of person:'
-    person_id = gets.chomp.to_i
-    person_fetch = db_people.find { |person| person.id == person_id }
+    puts 'Please enter the ID of the person whose rentals you want to see'
+    id = gets.chomp.to_i
 
-    #this can change to a method in the person class
-
-   if person_fetch[0]&.id == person_id
-      puts 'Rentals:'
-      person_fetch[0].rentals.each do |rental|
-        puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
-      end
-    else
-      puts 'That person doesn\'t exist'
+    person = db_people.find { |person| person.id == id }
+    puts 'Rentals:'
+    person.rentals.each do |rental|
+      puts "\nDate: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
     end
   end
 end
