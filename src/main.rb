@@ -2,7 +2,7 @@ require_relative './app'
 
 data = { books: [], people: [], rentals: [] }
 
-puts 'Welcome to School Library App!'
+puts 'Welcome to School Library your App!'
 
 def menu
   puts 'Please choose an option by entering a number:'
