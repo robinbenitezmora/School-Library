@@ -30,7 +30,7 @@ def main(db_data) # rubocop:todo Metrics/CyclomaticComplexity, Metrics/MethodLen
   when '4'
     app.create_book(db_data[:books])
   when '5'
-    app.create_rental(db_data)
+    app.create_renta(db_data)
   when '6'
     app.list_rentals(db_data[:people])
   when '7'
@@ -44,3 +44,7 @@ end
 # rubocop:enable Metrics/MethodLength
 
 main(db)
+
+# When I try to check the rentals for a person,
+# I get a error message that says "undefined method `rentals' for nil:NilClass"
+# I don't know why this is happening, I have tried to debug it but I can't find the problem.
