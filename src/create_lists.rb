@@ -18,20 +18,18 @@ class Lists
   end
 
   def list_rentals(db_people)
-    def list_rentals(db_people)
-      if db_people.empty?
-        puts 'There are no people to list rentals'
-        return
-      end
-  
-      puts 'Please enter the ID of the person whose rentals you want to see'
-      id = gets.chomp.to_i
-  
-      user = db_people.find { |person| person.id == id }
-      puts 'Rentals:'
-      user.rentals.each do |rental|
-        puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
-      end
+    if db_people.empty?
+      puts 'There are no people to list rentals'
+      return
+    end
+
+    puts 'Please enter the ID of the person whose rentals you want to see'
+    id = gets.chomp.to_i
+
+    user = db_people.find { |person| person.id == id }
+    puts 'Rentals:'
+    user.rentals.each do |rental|
+      puts "Person: #{rental.name}, Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
     end
   end
 end
