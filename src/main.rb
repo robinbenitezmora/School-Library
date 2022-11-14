@@ -22,7 +22,7 @@ end
 def main(db_data) # rubocop:todo Metrics/CyclomaticComplexity, Metrics/MethodLength
   lists = Lists.new
   methods = CreatorMethods.new
-  
+
   case display_menu
   when '1'
     lists.list_all_books(db_data[:books])

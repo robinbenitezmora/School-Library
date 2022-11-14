@@ -29,7 +29,7 @@ class CreatorMethods
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp
     parent_permission = parent_permission.downcase
-    parent_permission = parent_permission == 'y' ? true : false
+    parent_permission = parent_permission == 'y'
 
     student = Student.new(age, name, parent_permission: parent_permission)
     db_people.push(student)
@@ -44,7 +44,7 @@ class CreatorMethods
     db_people.push(teacher)
     puts 'Teacher created successfully'
   end
-  
+
   def create_book(db_books)
     print 'Title: '
     title = gets.chomp
