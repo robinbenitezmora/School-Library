@@ -6,12 +6,10 @@ require_relative './teacher'
 require_relative './classroom'
 
 class App
-  attr_accessor :db_books, :db_people, :db_rentals
-
   def initialize
-    @db_books = []
-    @db_people = []
-    @db_rentals = []
+    db_books = []
+    db_people = []
+    db_rentals = []
   end
   
   def list_all_books(db_books)
@@ -76,16 +74,7 @@ class App
     puts 'Teacher created successfully'
   end
 
-  def create_rental(db_data) # rubocop:todo Metrics/MethodLength
-    if db_data[:books].empty?
-      puts 'There are no books to rent'
-      return
-    end
-    if db_data[:people].empty?
-      puts 'There are no people to rent books to'
-      return
-    end
-
+  def create_rental(db_data) 
     puts 'Select a book from the following list by number'
     db_data[:books].each_with_index { |book, index| puts "#{index} Title: \"#{book.title}\", Author: #{book.author}" }
 
