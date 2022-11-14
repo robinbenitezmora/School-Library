@@ -9,3 +9,10 @@ class Lists
       puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
   end
+
+  def list_all_books(db_books)
+    puts 'List of all books'
+    db_books.each do |book|
+      puts "Title: \"#{book.title}\", Author: #{book.author}"
+    end
+  end
