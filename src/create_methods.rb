@@ -57,28 +57,34 @@ class CreatorMethods
     puts 'Book created successfully'
   end
 
-  def create_rental(db_books, db_people)
-    puts 'Select a book from the following list by number'
-    db_books.each_with_index do |book, index|
-      puts "#{index}) Title: '#{book.title}', Author: #{book.author}"
+  def create_rental(db_data) # rubocop:todo Metrics/MethodLength
+    if db_data[:books].empty?
+      puts 'There are no books to rent'
+      return
     end
-    book_index = gets.chomp.to_i
+    if db_data[:people].empty?
+      puts 'There are no people to rent books to'
+      return
+    end
 
-    puts
+    puts 'Select a book from the following list by number'
+    db_data[:books].each_with_index { |book, index| puts "#{index} Title: \"#{book.title}\", Author: #{book.author}" }
+
+    book_index = gets.chomp.to_i
+    book_chosen = db_data[:books][book_index]
 
     puts 'Select a person from the following list by number'
-    db_people.each_with_index do |person, index|
-      puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+    db_data[:people].each_with_index do |person, index|
+      puts "#{index} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
+
     person_index = gets.chomp.to_i
+    person_chosen = db_data[:people][person_index]
 
-    puts
-
-    print 'Date (yyyy-mm-dd): '
+    puts 'Date: yyyy-mm-dd'
     date = gets.chomp
 
-    rental = Rental.new(date, db_books[book_index], db_people[person_index])
-    puts "Rental created successfully for #{db_people[person_index].name}"
+    person_chosen.add_rental(book_chosen, date)
+    puts "Rental created successfully for #{person_chosen.name} with #{book_chosen.title}"
   end
 end
-
