@@ -7,31 +7,31 @@ require_relative './classroom'
 
 class App
   def initialize
-    db_books = []
-    db_people = []
-    db_rentals = []
+    @db_books = []
+    @db_people = []
+    @rentals = []
   end
   
-  def list_all_books(db_books)
+  def list_all_books
     puts 'List of all books:'
-    db_books.each { |book| puts "Title: \"#{book.title}\", Author: #{book.author}" }
+    @books.each { |book| puts "Title: \"#{book.title}\", Author: #{book.author}" }
   end
 
-  def create_book(db_books)
+  def create_book
     print 'Please enter the title of the book:'
     title = gets.chomp
     print 'Please enter the author of the book:'
     author = gets.chomp
-    db_books.push(Book.new(title, author))
+    @books.push(Book.new(title, author))
     print 'Book created successfully'
   end
 
-  def list_all_people(db_people)
+  def list_all_people
     puts 'List of all people:'
-    db_people.each { |person| puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+    @people.each { |person| puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
   end
 
-  def create_person(db_people)
+  def create_person
     puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]'
     option = gets.chomp
     print 'Age: '
@@ -41,53 +41,35 @@ class App
 
     case option
     when '1'
-      create_student(db_people, name, age)
+      print 'Has parent permission? [Y/N]: '
+      permission = gets.chomp
+      permission = permission.downcase == 'y'
+      @people.push(Student.new(age, name, permission))
     when '2'
-      create_teacher(db_people, name, age)
-    else
-      puts 'That is not a valid input'
-    end
-  end
-
-  def create_student(db_people, name, age)
-    puts 'Has parent permission? [Y/N]'
-    parent_permission = gets.chomp.downcase
-    student = ''
-    case parent_permission
-    when 'y'
-      student = Student.new(age, name, parent_permission: true)
-    when 'n'
-      student = Student.new(age, name, parent_permission: false)
+      print 'Specialization: '
+      specialization = gets.chomp
+      @people.push(Teacher.new(specialization, age, name))
     else
       puts 'That is not a valid input'
       return
     end
-    db_people.push(student)
-    puts 'Student created successfully'
+    puts 'Person created successfully'
   end
 
-  def create_teacher(db_people, name, age)
-    print 'Specialization: '
-    specialization = gets.chomp
-    teacher = Teacher.new(specialization, age, name)
-    db_people.push(teacher)
-    puts 'Teacher created successfully'
-  end
-
-  def create_rental(db_data) 
+  def create_rental
     puts 'Select a book from the following list by number'
-    db_data[:books].each_with_index { |book, index| puts "#{index} Title: \"#{book.title}\", Author: #{book.author}" }
+    @books.each_with_index { |book, index| puts "#{index} Title: \"#{book.title}\", Author: #{book.author}" }
 
     book_index = gets.chomp.to_i
-    book_chosen = db_data[:books][book_index]
+    book_chosen = @books[book_index]
 
     puts 'Select a person from the following list by number'
-    db_data[:people].each_with_index do |person, index|
+    @people.each_with_index do |person, index|
       puts "#{index} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
 
     person_index = gets.chomp.to_i
-    person_chosen = db_data[:people][person_index]
+    person_chosen = @people[person_index]
 
     puts 'Date: yyyy-mm-dd'
     date = gets.chomp
@@ -97,11 +79,6 @@ class App
   end
 
   def list_rentals(db_people)
-    if db_people.empty?
-      puts 'There are no people to list rentals'
-      return
-    end
-
     puts 'Please enter the ID of the person whose rentals you want to see'
     id = gets.chomp.to_i
 
