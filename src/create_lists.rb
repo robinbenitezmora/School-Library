@@ -16,3 +16,8 @@ class Lists
       puts "Title: \"#{book.title}\", Author: #{book.author}"
     end
   end
+
+  def list_rentals(db_people)
+    #Please complete this method to list all rentals for a given person id
+  end
+end
