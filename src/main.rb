@@ -25,17 +25,17 @@ def main(db_data) # rubocop:todo Metrics/CyclomaticComplexity, Metrics/MethodLen
   
   case display_menu
   when '1'
-    app.list_all_books(db_data[:books])
+    lists.list_all_books(db_data[:books])
   when '2'
-    app.list_all_people(db_data[:people])
+    lists.list_all_people(db_data[:people])
   when '3'
-    app.create_person(db_data[:people])
+    methods.create_person(db_data[:people])
   when '4'
-    app.create_book(db_data[:books])
+    methods.create_book(db_data[:books])
   when '5'
-    app.create_rental(db_data)
+    methods.create_rental(db_data)
   when '6'
-    app.list_rentals(db_data[:people])
+    lists.list_rentals(db_data[:people])
   when '7'
     puts 'Thank you for using this app!'
     return
