@@ -1,4 +1,5 @@
-require_relative './app'
+require_relative 'create_lists'
+require_relative 'create_methods'
 
 db = { books: [], people: [] }
 
@@ -19,7 +20,9 @@ end
 
 # rubocop:todo Metrics/MethodLength
 def main(db_data) # rubocop:todo Metrics/CyclomaticComplexity, Metrics/MethodLength
-  app = App.new
+  lists = Lists.new
+  methods = CreatorMethods.new
+  
   case display_menu
   when '1'
     app.list_all_books(db_data[:books])
