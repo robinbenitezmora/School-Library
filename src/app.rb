@@ -42,17 +42,20 @@ class App
     case option
     when '1'
       print 'Has parent permission? [Y/N]: '
-      permission = gets.chomp
-      permission = permission.downcase == 'y'
-      @people.push(Student.new(age, name, permission))
+      parent_permission = gets.chomp.downcase == 'y'
+      student = Student.new(age, name, parent_permission)
+      @people.push(student)
+      print 'Student created successfully'
+
     when '2'
       print 'Specialization: '
       specialization = gets.chomp
-      @people.push(Teacher.new(specialization, age, name))
+      @people.push(Teacher.new(age, specialization, name))
     else
       puts 'That is not a valid input'
       return
     end
+
     puts 'Person created successfully'
   end
 
