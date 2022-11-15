@@ -1,4 +1,4 @@
-requier 'json'
+require 'json'
 
 def save_database(app)
   save_people(app)
