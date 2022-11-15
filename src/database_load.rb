@@ -10,10 +10,11 @@ def load_people(app)
   File.write('people.json', JSON.generate(app.people)) if File.exist?('people.json')
   people = JSON.parse(File.read('people.json'))
   people.each do |person|
-    if person['class'] == 'Student'
+    case person['class']
+    when 'Student'
       student = Student.new(person['id'], person['name'], person['age'], person['parent_permission'])
       app.people.push(student)
-    elsif person['class'] == 'Teacher'
+    when 'Teacher'
       teacher = Teacher.new(person['id'], person['name'], person['age'], person['specialization'])
       app.people.push(teacher)
     end

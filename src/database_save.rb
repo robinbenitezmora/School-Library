@@ -9,11 +9,14 @@ end
 def save_people(app)
   people = []
   app.people.each do |person|
-    if person.class.to_s == 'Student'
-      student = { 'id' => person.id, 'name' => person.name, 'age' => person.age, 'parent_permission' => person.parent_permission, 'class' => person.class.to_s }
+    case person.class.to_s
+    when 'Student'
+      student = { 'id' => person.id, 'name' => person.name, 'age' => person.age,
+                  'parent_permission' => person.parent_permission, 'class' => person.class.to_s }
       people.push(student)
-    elsif person.class.to_s == 'Teacher'
-      teacher = { 'id' => person.id, 'name' => person.name, 'age' => person.age, 'specialization' => person.specialization, 'class' => person.class.to_s }
+    when 'Teacher'
+      teacher = { 'id' => person.id, 'name' => person.name, 'age' => person.age,
+                  'specialization' => person.specialization, 'class' => person.class.to_s }
       people.push(teacher)
     end
   end
