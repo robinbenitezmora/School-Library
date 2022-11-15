@@ -7,11 +7,11 @@ require_relative './classroom'
 
 class App
   def initialize
-    @db_books = []
-    @db_people = []
+    @books = []
+    @people = []
     @rentals = []
   end
-  
+
   def list_all_books
     puts 'List of all books:'
     @books.each { |book| puts "Title: \"#{book.title}\", Author: #{book.author}" }
@@ -81,11 +81,11 @@ class App
     puts "Rental created successfully for #{person_chosen.name} with #{book_chosen.title}"
   end
 
-  def list_rentals(db_people)
+  def list_rentals
     puts 'Please enter the ID of the person whose rentals you want to see'
     id = gets.chomp.to_i
 
-    user = db_people.find { |person| person.id == id }
+    user = @people.find { |person| person.id == id }
     puts 'Rentals:'
     user.rentals.each do |rental|
       puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
