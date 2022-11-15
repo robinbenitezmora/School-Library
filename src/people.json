@@ -1,0 +1,32 @@
+[
+    {
+      "name": "John",
+      "age": 30,
+      "permissions": true,
+      "type": "Student"
+    },
+    {
+      "name": "Jane",
+      "age": 25,
+      "permissions": false,
+      "type": "Student"
+    },
+    {
+      "name": "Jack",
+      "age": 40,
+      "specialization": "Mathematics",
+      "type": "Teacher"
+    },
+    {
+      "name": "Jill",
+      "age": 45,
+      "specialization": "Physics",
+      "type": "Teacher"
+    },
+    {
+      "name": "Joe",
+      "age": 50,
+      "specialization": "Chemistry",
+      "type": "Teacher"
+    }
+  ]

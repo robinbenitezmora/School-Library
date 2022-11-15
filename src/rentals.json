@@ -1,0 +1,30 @@
+[
+    {
+      "date": "2019-01-01",
+      "book": 0,
+      "book_title": "The Shawshank Redemption",
+      "person": 0,
+      "person_name": "Andy Dufresne"
+    },
+    {
+      "date": "2020-01-01",
+      "book": 1,
+      "book_title": "The Godfather",
+      "person": 1,
+      "person_name": "Michael Corleone"
+    },
+    {
+      "date": "2022-05-17",
+      "book": 2,
+      "book_title": "The Goodfather Part II",
+      "person": 2,
+      "person_name": "Sonny Corleone"
+    },
+    {
+      "date": "2021-01-01",
+      "book": 2,
+      "book_title": "The Dark Knight",
+      "person": 2,
+      "person_name": "The Joker"
+    }
+  ]
