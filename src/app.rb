@@ -6,6 +6,8 @@ require_relative './teacher'
 require_relative './classroom'
 
 class App
+  attr_accessor :books, :people, :rentals
+
   def initialize
     @books = []
     @people = []
@@ -50,13 +52,13 @@ class App
     when '2'
       print 'Specialization: '
       specialization = gets.chomp
-      @people.push(Teacher.new(age, specialization, name))
+      teacher = Teacher.new(age, specialization, name)
+      @people.push(teacher)
+      print 'Teacher created successfully'
     else
       puts 'That is not a valid input'
-      return
+      nil
     end
-
-    puts 'Person created successfully'
   end
 
   def create_rental
@@ -68,7 +70,7 @@ class App
 
     puts 'Select a person from the following list by number'
     @people.each_with_index do |person, index|
-      puts "#{index} - [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+      puts "#{index}) [Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
 
     person_index = gets.chomp.to_i
@@ -86,9 +88,15 @@ class App
     id = gets.chomp.to_i
 
     user = @people.find { |person| person.id == id }
-    puts 'Rentals:'
-    user.rentals.each do |rental|
-      puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
+    if user.nil?
+      puts 'No person found with that ID'
+    elsif user.rentals.empty?
+      puts 'No rentals found for that person'
+    else
+      puts 'Rentals:'
+      user.rentals.each do |rental|
+        puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
+      end
     end
   end
 end

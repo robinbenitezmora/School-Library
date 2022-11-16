@@ -1,3 +1,6 @@
+require_relative './database_load'
+require_relative './database_save'
+
 class Display
   def menu
     puts
@@ -12,20 +15,28 @@ class Display
   end
 
   def show_menu(app)
+    load_database(app)
     loop do
       menu
-      input = gets.chomp.to_i
-      case input
-      when 1 then app.list_all_books
-      when 2 then app.list_all_people
-      when 3 then app.create_person
-      when 4 then app.create_book
-      when 5 then app.create_rental
-      when 6 then app.list_rentals
-      when 7 then puts 'Thank you for using this app'
-                  break
+      option = gets.chomp
+      case option
+      when '1'
+        app.list_all_books
+      when '2'
+        app.list_all_people
+      when '3'
+        app.create_person
+      when '4'
+        app.create_book
+      when '5'
+        app.create_rental
+      when '6'
+        app.list_rentals
+      when '7'
+        save_database(app)
+        break
       else
-        puts 'That is not a valid input'
+        puts 'That is not a valid option'
       end
     end
   end
