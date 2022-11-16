@@ -93,10 +93,10 @@ class App
     elsif user.rentals.empty?
       puts 'No rentals found for that person'
     else
-    puts 'Rentals:'
-    user.rentals.each do |rental|
-    puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
+      puts 'Rentals:'
+      user.rentals.each do |rental|
+        puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
+      end
     end
-  end
   end
 end
