@@ -28,6 +28,10 @@ git clone https://github.com/robinbenitezmora/School-Library in your terminal
 - Twitter: [@Mecanico_Robin](https://twitter.com/mecanico_robin)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/robin-benitez-mora/)
 
+- GitHub: [@asnganje](https://github.com/asnganje)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/abdulrahman-nganje-a6436935//)
+
+
 ## Contributing
 Contributions, issues, and feature requests are welcome!
 Feel free to check the issues page.
