@@ -88,9 +88,15 @@ class App
     id = gets.chomp.to_i
 
     user = @people.find { |person| person.id == id }
+    if user.nil?
+      puts 'No person found with that ID'
+    elsif user.rentals.empty?
+      puts 'No rentals found for that person'
+    else
     puts 'Rentals:'
     user.rentals.each do |rental|
-      puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
+    puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
     end
+  end
   end
 end
