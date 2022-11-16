@@ -57,7 +57,7 @@ class App
       print 'Teacher created successfully'
     else
       puts 'That is not a valid input'
-      return
+      nil
     end
   end
 

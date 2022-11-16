@@ -11,10 +11,12 @@ def save_people(app)
   app.people.each do |person|
     case person.class.to_s
     when 'Student'
-      student = { 'name' => person.name, 'age' => person.age, 'parent_permission' => person.parent_permission, 'type' => 'Student' }
+      student = { 'name' => person.name, 'age' => person.age, 'parent_permission' => person.parent_permission,
+                  'type' => 'Student' }
       people.push(student)
     when 'Teacher'
-      teacher = { 'name' => person.name, 'age' => person.age, 'specialization' => person.specialization, 'type' => 'Teacher' }
+      teacher = { 'name' => person.name, 'age' => person.age, 'specialization' => person.specialization,
+                  'type' => 'Teacher' }
       people.push(teacher)
     end
   end
