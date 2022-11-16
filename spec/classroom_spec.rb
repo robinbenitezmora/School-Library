@@ -6,7 +6,7 @@ describe Classroom do
   end
 
   context 'when initialized' do
-    it 'takes one parameter and returns a Classroom object' do
+    it 'It takes one parameter and returns a Classroom object' do
       expect(@classroom).to be_an_instance_of(Classroom)
     end
 
