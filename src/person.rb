@@ -1,7 +1,7 @@
-require './nameable'
-require './capitalize'
-require './trimmer'
-require './rental'
+require_relative './nameable'
+require_relative './capitalize'
+require_relative './trimmer'
+require_relative './rental'
 
 class Person < Nameable
   attr_accessor :name, :age, :rentals, :parent_permission

@@ -1,9 +1,9 @@
-require './person'
-require './book'
-require './rental'
-require './student'
-require './teacher'
-require './classroom'
+require_relative './person'
+require_relative './book'
+require_relative './rental'
+require_relative './student'
+require_relative './teacher'
+require_relative './classroom'
 
 class App
   attr_accessor :books, :people, :rentals
@@ -52,13 +52,13 @@ class App
     when '2'
       print 'Specialization: '
       specialization = gets.chomp
-      @people.push(Teacher.new(age, specialization, name))
+      teacher = Teacher.new(age, specialization, name)
+      @people.push(teacher)
+      print 'Teacher created successfully'
     else
       puts 'That is not a valid input'
       return
     end
-
-    puts 'Person created successfully'
   end
 
   def create_rental
@@ -70,7 +70,7 @@ class App
 
     puts 'Select a person from the following list by number'
     @people.each_with_index do |person, index|
-      puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+      puts "#{index}) [Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
 
     person_index = gets.chomp.to_i

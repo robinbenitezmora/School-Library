@@ -7,34 +7,34 @@ def load_database(app)
 end
 
 def load_people(app)
-  File.write('people.json', JSON.generate(app.people)) if File.exist?('people.json')
+  File.write('people.json', JSON.generate([])) unless File.exist?('people.json')
   people = JSON.parse(File.read('people.json'))
   people.each do |person|
-    case person['class']
+    case person['type']
     when 'Student'
-      student = Student.new(person['id'], person['name'], person['age'], person['parent_permission'])
+      student = Student.new(person['age'], person['name'], parent_permission: person['parent_permission'])
       app.people.push(student)
     when 'Teacher'
-      teacher = Teacher.new(person['id'], person['name'], person['age'], person['specialization'])
+      teacher = Teacher.new(person['specialization'], person['age'], person['name'])
       app.people.push(teacher)
     end
   end
 end
 
 def load_books(app)
-  File.write('books.json', JSON.generate(app.books)) if File.exist?('books.json')
+  File.write('books.json', JSON.generate([])) unless File.exist?('books.json')
   books = JSON.parse(File.read('books.json'))
   books.each do |book|
-    book = Book.new(book['id'], book['title'], book['author'])
+    book = Book.new(book['title'], book['author'])
     app.books.push(book)
   end
 end
 
 def load_rentals(app)
-  File.write('rentals.json', JSON.generate(app.rentals)) if File.exist?('rentals.json')
+  File.write('rentals.json', JSON.generate([])) unless File.exist?('rentals.json')
   rentals = JSON.parse(File.read('rentals.json'))
   rentals.each do |rental|
-    rental = Rental.new(rental['id'], rental['date'], rental['person'], rental['book'])
+    rental = Rental.new(rental['date'], rental['book'], rental['person'])
     app.rentals.push(rental)
   end
 end

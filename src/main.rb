@@ -1,5 +1,5 @@
-require './app'
-require './display'
+require_relative './app'
+require_relative './display'
 
 def main
   app = App.new

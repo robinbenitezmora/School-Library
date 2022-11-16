@@ -1,5 +1,5 @@
-require './database_load'
-require './database_save'
+require_relative './database_load'
+require_relative './database_save'
 
 class Display
   def menu

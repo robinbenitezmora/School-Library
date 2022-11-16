@@ -11,12 +11,10 @@ def save_people(app)
   app.people.each do |person|
     case person.class.to_s
     when 'Student'
-      student = { 'id' => person.id, 'name' => person.name, 'age' => person.age,
-                  'parent_permission' => person.parent_permission, 'class' => person.class.to_s }
+      student = { 'name' => person.name, 'age' => person.age, 'parent_permission' => person.parent_permission, 'type' => 'Student' }
       people.push(student)
     when 'Teacher'
-      teacher = { 'id' => person.id, 'name' => person.name, 'age' => person.age,
-                  'specialization' => person.specialization, 'class' => person.class.to_s }
+      teacher = { 'name' => person.name, 'age' => person.age, 'specialization' => person.specialization, 'type' => 'Teacher' }
       people.push(teacher)
     end
   end
@@ -26,7 +24,7 @@ end
 def save_books(app)
   books = []
   app.books.each do |book|
-    book = { 'id' => book.id, 'title' => book.title, 'author' => book.author }
+    book = { 'title' => book.title, 'author' => book.author }
     books.push(book)
   end
   File.write('books.json', JSON.generate(books))
@@ -35,7 +33,7 @@ end
 def save_rentals(app)
   rentals = []
   app.rentals.each do |rental|
-    rental = { 'id' => rental.id, 'date' => rental.date, 'person' => rental.person, 'book' => rental.book }
+    rental = { 'date' => rental.date, 'person' => rental.person, 'book' => rental.book }
     rentals.push(rental)
   end
   File.write('rentals.json', JSON.generate(rentals))
